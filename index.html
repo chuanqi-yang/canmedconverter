@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Medical School GPA Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <h1>Medical School GPA Calculator</h1>
+    <p>Convert your university grades to OMSAS 4.0 scale and estimate GPA used in med school admissions.</p>
+  </header>
+
+  <main>
+    <form id="gpa-form">
+      <label for="university">Select University:</label>
+      <select id="university" name="university" required>
+        <option value="UofT">University of Toronto</option>
+        <option value="UBC">University of British Columbia</option>
+        <option value="Western">Western University</option>
+        <option value="Ottawa">University of Ottawa</option>
+        <!-- add more -->
+      </select>
+
+      <h3>Courses</h3>
+      <div id="courses"></div>
+      <button type="button" id="add-course">+ Add Course</button>
+      <br><br>
+
+      <button type="submit">Calculate GPA</button>
+    </form>
+
+    <h2>Results</h2>
+    <pre id="results">No results yet</pre>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
