@@ -1,39 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Medical School GPA Calculator</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medical School GPA Calculator</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header>
-    <h1>Medical School GPA Calculator</h1>
-    <p>Convert your university grades to OMSAS 4.0 scale and estimate GPA used in med school admissions.</p>
-  </header>
+    <header>
+        <h1>Medical School GPA Calculator</h1>
+        <p>Convert your university grades to 4.0 scale and calculate various GPA types used by Canadian medical schools.</p>
+    </header>
 
-  <main>
-    <form id="gpa-form">
-      <label for="university">Select University:</label>
-      <select id="university" name="university" required>
-        <option value="UofT">University of Toronto</option>
-        <option value="UBC">University of British Columbia</option>
-        <option value="Western">Western University</option>
-        <option value="Ottawa">University of Ottawa</option>
-        <!-- add more -->
-      </select>
+    <main>
+        <form id="gpa-form">
+            <div class="university-section">
+                <label for="university">Select Your University:</label>
+                <select id="university" name="university" required>
+                    <option value="">-- Select Your University --</option>
+                </select>
+                <div id="scale-info" class="scale-info" style="display: none;"></div>
+            </div>
 
-      <h3>Courses</h3>
-      <div id="courses"></div>
-      <button type="button" id="add-course">+ Add Course</button>
-      <br><br>
+            <div class="courses-section">
+                <h3>Courses</h3>
+                <div class="credit-note">
+                    <strong>Instructions:</strong><br>
+                    • Enter grades exactly as they appear on your transcript<br>
+                    • Include credit hours for accurate weighted calculations<br>
+                    • Select academic year for advanced GPA calculations<br>
+                    • Academic years with 18+ credits qualify for "worst year" dropping
+                </div>
+                
+                <div class="table-container">
+                    <table id="courses-table">
+                        <thead>
+                            <tr>
+                                <th>Course Name</th>
+                                <th>Grade</th>
+                                <th>Credits</th>
+                                <th>Academic Year</th>
+                                <th>4.0 Scale</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="courses">
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="button-group">
+                    <button type="button" id="add-course">+ Add Course</button>
+                    <button type="submit" id="calculate-btn">Calculate All GPA Types</button>
+                    <button type="button" id="clear-all">Clear All</button>
+                </div>
+            </div>
+        </form>
 
-      <button type="submit">Calculate GPA</button>
-    </form>
+        <div id="loading" class="loading" style="display: none;">
+            Calculating your GPA variations...
+        </div>
 
-    <h2>Results</h2>
-    <pre id="results">No results yet</pre>
-  </main>
+        <div id="results-section" class="results-section" style="display: none;">
+            <h2>GPA Results (4.0 Scale)</h2>
+            <div id="results"></div>
+        </div>
 
-  <script src="app.js"></script>
+        <div id="error" class="error" style="display: none;"></div>
+
+        <div class="info-section">
+            <h3>Medical School GPA Requirements</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4>Drop Worst Year</h4>
+                    <p>University of Calgary, University of Alberta, UBC</p>
+                    <small>Removes your lowest-performing academic year (requires 18+ credits)</small>
+                </div>
+                <div class="info-card">
+                    <h4>Two Best Years</h4>
+                    <p>Western University, Dalhousie University</p>
+                    <small>Uses only your two highest-performing academic years</small>
+                </div>
+                <div class="info-card">
+                    <h4>Three Recent Years</h4>
+                    <p>University of Ottawa</p>
+                    <small>Uses your three most recent academic years</small>
+                </div>
+                <div class="info-card">
+                    <h4>Standard cGPA</h4>
+                    <p>Toronto, McMaster, Queen's, McGill</p>
+                    <small>All courses included, weighted by credits</small>
+                </div>
+            </div>
+            
+            <p><strong>Important:</strong> This calculator provides estimates based on OUAC conversion tables. Always verify with official sources and individual medical school requirements.</p>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
 </body>
 </html>
